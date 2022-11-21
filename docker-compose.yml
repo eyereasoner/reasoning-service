@@ -1,0 +1,18 @@
+version: '3.4'
+
+x-logging:
+  &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+services:
+  reasoner:
+    image: mu-reasoner
+    ports:
+      - "8888:80"
+    environment:
+      MODE: "development"
+    volumes:
+      - /root/workspace/reasoner:/app
