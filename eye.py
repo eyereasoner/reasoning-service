@@ -10,7 +10,10 @@ class Eye:
     def __init__(self) -> None:
         self.data = []
         self.queries = []
-        self.options = ['--nope', '--pass']
+        self.options = [
+            '--nope',  # No proof explanation
+            '--pass'   # pass the full deductive closure (i.e. no filter/query)
+            ]
         self.temp_files = []
         self.temp_dir = '/tmp/'
 
@@ -42,7 +45,7 @@ class Eye:
 
     def serialize_command(self) -> str:
         return (
-            ['eye'] +
+            ['swipl', '-x', '/usr/local/lib/eye.pvm', '--'] +
             self.data +
             self.temp_files +
             [v for file in self.queries for v in ('--query', file)] +
