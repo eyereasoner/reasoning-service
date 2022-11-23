@@ -1,6 +1,6 @@
 # Mu Reasoner
 
-Configurable reasoning service. A wrapper around the [EYE reasong engine](https://github.com/josd/eye) using the [mu-python-template](https://github.com/mu-semtech/mu-python-template) for [Semantic.works](https://semantic.works/).
+Configurable reasoning service. A wrapper around the [EYE reasong engine](https://github.com/josd/eye) using the [mu-python-template](https://github.com/mu-semtech/mu-python-template) for [mu.semte.ch](http://mu.semte.ch)-microservices.
 
 ## Configuration and usage
 
