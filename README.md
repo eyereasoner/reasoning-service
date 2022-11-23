@@ -14,6 +14,20 @@ curl --location --request POST 'https://reasoner.dev.devloed.com/reason/knows' \
 --form 'data="http://n3.restdesc.org/n3/friends.n3"'
 ```
 
+Or
+
+```
+curl --location --request POST 'https://reasoner.dev.devloed.com/reason/knows' \
+--form 'data="@prefix ppl: <http://example.org/people#>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+
+ppl:Cindy foaf:knows ppl:John.
+ppl:Cindy foaf:knows ppl:Eliza.
+ppl:Cindy foaf:knows ppl:Kate.
+ppl:Eliza foaf:knows ppl:John.
+ppl:Peter foaf:knows ppl:John."'
+```
+
 ## API
 
 ```
