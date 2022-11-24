@@ -11,8 +11,10 @@ class Eye:
         self.data = []
         self.queries = []
         self.options = [
-            '--nope',  # No proof explanation
-            '--pass'   # pass the full deductive closure (i.e. no filter/query)
+            '--no-qnames',  # No prefixes, easier to partition triples later
+            '--quiet',      # No comments (timing, eye version and argments)
+            '--nope',       # No proof explanation
+            '--pass'        # Full deductive closure without filter/query
             ]
         self.temp_files = []
         self.temp_dir = '/tmp/'
