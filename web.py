@@ -3,12 +3,6 @@ from pathlib import Path
 from eye import Eye
 from helpers import error, log
 
-default_options = {
-  'data': [],
-  'data_uris': [],
-  'query': 'pass'
-}
-
 CONFIG_DIR = '/config/'
 
 @app.route("/reason/", defaults={'path': None}, methods=['GET', 'POST'])

@@ -27,7 +27,7 @@ class Eye:
         self.queries.extend(*queries)
 
     def add_data_by_reference(self, *data):
-        self.queries.extend(*data)
+        self.data.extend(*data)
 
     def add_data_by_value(self, data):
         temp_file_name = (
@@ -63,6 +63,7 @@ class Eye:
                 encoding='utf-8',
                 check=True
             )
+            log(process.stderr)
             return process.stdout, process.returncode
         except subprocess.CalledProcessError as cpe:
             log(cpe.stderr)
