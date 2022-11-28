@@ -1,7 +1,7 @@
 from flask import request, make_response
 from pathlib import Path
 from eye import Eye
-from helpers import error
+from helpers import error, log
 
 default_options = {
   'data': [],
@@ -9,7 +9,7 @@ default_options = {
   'query': 'pass'
 }
 
-CONFIG_DIR = '/app/config/'
+CONFIG_DIR = '/config/'
 
 @app.route("/reason/", defaults={'path': None}, methods=['GET', 'POST'])
 @app.route('/reason/<path:path>', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ def reason_with_config(path):
             eye.add_queries([query.resolve() for query in config.glob('*.n3q')])
             eye.add_data_by_reference([data.resolve() for data in config.glob('*.n3')])
         else:
-            error(f'No config for {path}', status=404)
+            return error(f'No config for {path}', status=404)
 
     data_content = request.values['data']
     assert isinstance(data_content, str)

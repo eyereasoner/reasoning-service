@@ -16,3 +16,4 @@ services:
       MODE: "development"
     volumes:
       - /root/workspace/reasoner:/app
+      - /root/workspace/reasoner/config:/config
