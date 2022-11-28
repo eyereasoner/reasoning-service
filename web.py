@@ -18,8 +18,12 @@ def reason_with_config(path):
     if path is not None:
         config = Path(f'{CONFIG_DIR}/{path}')
         if config.exists():
-            eye.add_queries([query.resolve() for query in config.glob('*.n3q')])
-            eye.add_data_by_reference([data.resolve() for data in config.glob('*.n3')])
+            queries = [query.resolve() for query in config.glob('*.n3q')]
+            if queries:
+                eye.add_queries(queries)
+            eye.add_data_by_reference(
+                [data.resolve() for data in config.glob('*.n3')]
+            )
         else:
             msg = f'No config for {path}'
             log(f'404 {msg}')
