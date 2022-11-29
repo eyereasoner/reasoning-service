@@ -38,8 +38,10 @@ def reason_with_config(path):
     data, code = eye.reason()
 
     if code:
+        log(f"500 {path}")
         return error(data, status=500)
     else:
         response = make_response(data)
         response.mimetype = "text/turtle"
+        log(f"200 {path}")
         return response
