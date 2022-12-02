@@ -1,14 +1,17 @@
-from flask import request, make_response
+import os
 from pathlib import Path
-from eye import Eye
+
+from flask import Response, make_response, request
 from helpers import error, log
 
-CONFIG_DIR = "/config/"
+from eye import Eye
+
+CONFIG_DIR = os.getenv("CONFIG_DIR") or "/config/"
 
 
 @app.route("/reason/", defaults={"path": None}, methods=["GET", "POST"])
 @app.route("/reason/<path:path>", methods=["GET", "POST"])
-def reason_with_config(path):
+def reason_with_config(path) -> Response:
     log(f"{request.method} {path}")
     if "data" not in request.values:
         msg = f"No data in to reason upon {path}"

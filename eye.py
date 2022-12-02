@@ -1,7 +1,8 @@
-import subprocess
 import os
+import subprocess
 import time
-from pathlib import Path
+from typing import Tuple
+
 from helpers import generate_uuid, log
 
 
@@ -25,10 +26,10 @@ class Eye:
             self.options.remove("--pass")
         self.queries.extend(*queries)
 
-    def add_data_by_reference(self, *data):
+    def add_data_by_reference(self, *data) -> None:
         self.data.extend(*data)
 
-    def add_data_by_value(self, data):
+    def add_data_by_value(self, data) -> None:
         temp_file_name = (
             f"{self.temp_dir}" f'{time.strftime("%Y%m%d-%H%M%S")}-{generate_uuid()}.ttl'
         )
@@ -38,7 +39,7 @@ class Eye:
         self.temp_files.append(temp_file_name)
         log(f"Created temp file {temp_file_name}")
 
-    def cleanup(self):
+    def cleanup(self) -> None:
         for file in self.temp_files:
             log(f"Deleting {file}")
             os.remove(file)
@@ -52,7 +53,7 @@ class Eye:
             + self.options
         )
 
-    def reason(self, *args, **kwargs):
+    def reason(self) -> Tuple[str, int]:
         try:
             process = subprocess.run(
                 self.serialize_command(),
