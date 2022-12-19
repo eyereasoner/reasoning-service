@@ -1,12 +1,10 @@
-import os
 from pathlib import Path
 
 from flask import Response, make_response, request
 from helpers import error, log
 
 from eye import Eye
-
-CONFIG_DIR = os.getenv("CONFIG_DIR") or "/config/"
+from config import CONFIG_DIR
 
 
 @app.route("/reason/", defaults={"path": None}, methods=["GET", "POST"])

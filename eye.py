@@ -4,6 +4,7 @@ import time
 from typing import Tuple
 
 from helpers import generate_uuid, log
+from config import KEEP_TEMP_FILES
 
 
 class Eye:
@@ -40,9 +41,14 @@ class Eye:
         log(f"Created temp file {temp_file_name}")
 
     def cleanup(self) -> None:
-        for file in self.temp_files:
-            log(f"Deleting {file}")
-            os.remove(file)
+        if not KEEP_TEMP_FILES:
+            for file in self.temp_files:
+                log(f"Deleting {file}")
+                os.remove(file)
+        else:
+            log("Keeping temp files")
+            for file in self.temp_files:
+                log(f"{file}")
 
     def serialize_command(self) -> str:
         return (
