@@ -28,6 +28,27 @@ ppl:Eliza foaf:knows ppl:John.
 ppl:Peter foaf:knows ppl:John."'
 ```
 
+### Keep temporary files for debugging/development
+
+When data is passed by value - i.e. passing triples as content vs passing an url referencing a ttl/n3 file - the data is stored as a tmp file before being passed to eye and by default cleaned up after the reasoning is done.
+
+Use the `KEEP_TEMP_FILES` variable to prevent the automated cleanup:
+
+```
+    environment:
+      KEEP_TEMP_FILES: "True"
+    volumes:
+      - ./config:/config
+      - ./temp:/tmp
+```
+
+The temp files are also kept when running in development mode. cf [mu-python-template](https://github.com/mu-semtech/mu-python-template) for more info.
+
+```
+    environment:
+      MODE: "development"
+```
+
 ## API
 
 ```
@@ -41,10 +62,12 @@ GET /reason/<path>?data=<uriReferencesOrTTl>
 ```
 
 Data can be both
+
 - by value (Turtle or Notation3)
 - Comma separated URLs of TTL/N3 resources
 
 The `<path>` is optional. When empty - all the data and rules have to be provided via the data parameter in the request.
 
 ## Alternatives
+
 - [RubenVerborgh/EyeServer](https://github.com/RubenVerborgh/EyeServer/)
