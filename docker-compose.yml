@@ -8,12 +8,12 @@ x-logging: &default-logging
 
 services:
   reasoner:
-    image: mu-reasoner
+    image: eyereasoner/reasoning-service
     ports:
       - "8888:80"
     environment:
       MODE: "development"
     volumes:
-      - /root/workspace/reasoner:/app
-      - /root/workspace/reasoner/config:/config
-      - /root/workspace/reasoner/temp:/tmp
+      - .:/app
+      - ./config:/config
+      - ./temp:/tmp
