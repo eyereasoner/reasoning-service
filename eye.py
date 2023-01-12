@@ -69,8 +69,9 @@ class Eye:
                 encoding="utf-8",
                 check=True,
             )
+            cleaned_up_result = process.stdout.rstrip("\n")
             log(process.stderr)
-            return process.stdout, process.returncode
+            return cleaned_up_result, process.returncode
         except subprocess.CalledProcessError as cpe:
             log(cpe.stderr)
             return cpe.stderr, cpe.returncode
