@@ -61,6 +61,7 @@ class Eye:
 
     def reason(self) -> Tuple[str, int]:
         try:
+            log(self.serialize_command())
             process = subprocess.run(
                 self.serialize_command(),
                 stdout=subprocess.PIPE,
