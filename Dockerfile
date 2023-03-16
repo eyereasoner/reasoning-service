@@ -10,3 +10,5 @@ RUN apt-get update && \
   eye-${EYE_VERSION}/install.sh --prefix=/usr/local && \
   rm -rf /var/lib/apt/lists/* && \
   rm -rf v${EYE_VERSION}.zip eye-${EYE_VERSION}
+
+RUN echo 'timeout = os.getenv("TIMEOUT", 300)' >> /gunicorn_conf.py
