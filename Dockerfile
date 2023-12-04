@@ -1,6 +1,6 @@
 FROM semtech/mu-python-template:2.0.0-beta.1
 LABEL maintainer="code@devloed.com"
-ENV EYE_VERSION=23.0106.2349
+ENV EYE_VERSION=8.7.5
 LABEL reasoner="https://github.com/eyereasoner/eye/releases/tag/v${EYE_VERSION}"
 
 RUN apt-get update && \
