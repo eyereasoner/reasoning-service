@@ -52,7 +52,7 @@ class Eye:
 
     def serialize_command(self) -> str:
         return (
-            ["swipl", "-x", "/usr/local/lib/eye.pvm", "--"]
+            ["swipl", "--stack-limit=8G", "-x", "/usr/local/lib/eye.pvm", "--"]
             + self.data
             + self.temp_files
             + [v for file in self.queries for v in ("--query", file)]
