@@ -4,7 +4,7 @@ import time
 from typing import Tuple
 
 from helpers import generate_uuid, log
-from config import KEEP_TEMP_FILES
+from config import KEEP_TEMP_FILES, TIMEOUT
 
 
 class Eye:
@@ -68,6 +68,7 @@ class Eye:
                 stderr=subprocess.PIPE,
                 encoding="utf-8",
                 check=True,
+                timeout=TIMEOUT,
             )
             cleaned_up_result = process.stdout.rstrip("\n")
             log(process.stderr)
