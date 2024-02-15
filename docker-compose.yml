@@ -13,6 +13,8 @@ services:
       - "8888:80"
     environment:
       MODE: "development"
+      STACK_LIMIT: "10G"
+      TIMEOUT: "300"
     volumes:
       - .:/app
       - ./config:/config

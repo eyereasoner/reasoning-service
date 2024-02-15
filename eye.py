@@ -4,7 +4,7 @@ import time
 from typing import Tuple
 
 from helpers import generate_uuid, log
-from config import KEEP_TEMP_FILES
+from config import KEEP_TEMP_FILES, TIMEOUT, STACK_LIMIT
 
 
 class Eye:
@@ -52,7 +52,13 @@ class Eye:
 
     def serialize_command(self) -> str:
         return (
-            ["swipl", "--stack-limit=8G", "-x", "/usr/local/lib/eye.pvm", "--"]
+            [
+                "swipl",
+                f"--stack-limit={STACK_LIMIT}",
+                "-x",
+                "/usr/local/lib/eye.pvm",
+                "--",
+            ]
             + self.data
             + self.temp_files
             + [v for file in self.queries for v in ("--query", file)]
@@ -68,6 +74,7 @@ class Eye:
                 stderr=subprocess.PIPE,
                 encoding="utf-8",
                 check=True,
+                timeout=TIMEOUT,
             )
             cleaned_up_result = process.stdout.rstrip("\n")
             log(process.stderr)
