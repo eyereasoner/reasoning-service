@@ -49,6 +49,18 @@ The temp files are also kept when running in development mode. cf [mu-python-tem
       MODE: "development"
 ```
 
+### Timiout and memory limits
+
+The reasoning engine is run in a separate process and is subject to the same limits as the main process. The default timeout is 20 minutes and the default memory limit is 8Gb. These can be adjusted using the `TIMEOUT` and `STACK_LIMIT` environment variables.
+
+More info on the stack limit can be found on the [SWI-Prolog site](https://www.swi-prolog.org/pldoc/man?section=stacksizes).
+
+```
+    environment:
+      TIMEOUT: "1200" # in seconds
+      STACK_LIMIT: "8g"
+```
+
 ## API
 
 ```
